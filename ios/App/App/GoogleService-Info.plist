@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1070868075505-i090c5h7ku6mvt0vbfhrpkepsl11spj6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1070868075505-i090c5h7ku6mvt0vbfhrpkepsl11spj6</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1070868075505-vbe71uvl9qhfkvc1shjsfnoi9muek3tu.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCkqmkhmLRcNjJICyR3QI3Ap5BdqBTvark</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1070868075505</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>dev.ionstarter.angularfirebase.demo</string>
+	<key>PROJECT_ID</key>
+	<string>ionstarter-9e55d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ionstarter-9e55d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1070868075505:ios:1b84605226237888f5aa50</string>
+</dict>
+</plist>

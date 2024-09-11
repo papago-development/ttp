@@ -1,0 +1,323 @@
+{
+  "core": {
+    "button": {
+      "back": "Zurück"
+    },
+    "dialog": {
+      "error": {
+        "button": {
+          "ok": "Okay"
+        },
+        "header": "Fehler"
+      },
+      "filePicker": {
+        "button": {
+          "cancel": "Abbrechen"
+        },
+        "label": {
+          "image": "Foto",
+          "video": "Video",
+          "file": "Datei"
+        }
+      },
+      "loading": {
+        "message": "Laden..."
+      },
+      "toast": {
+        "button": {
+          "ok": "Okay"
+        }
+      },
+      "unsavedChanges": {
+        "button": {
+          "cancel": "Abbrechen",
+          "continue": "Fortfahren"
+        },
+        "message": "Du hast ungespeicherte Änderungen. Bist du sicher, dass du die Seite verlassen möchtest?",
+        "header": "Ungespeicherte Änderungen"
+      }
+    },
+    "message": {
+      "error": {
+        "filePicker": {
+          "maxFileSizeExceeded": "Die maximale Dateigröße von {{ maxFileSizeInMb }} MB wurde überschritten."
+        },
+        "firebase": {
+          "auth": {
+            "emailAlreadyInUse": "Die Email-Adresse wird bereits verwendet.",
+            "invalidCredential": "Die Anmeldeinformationen sind ungültig.",
+            "invalidEmail": "Die Email-Adresse ist ungültig.",
+            "popupClosedByUser": "Der Vorgang wurde abgebrochen.",
+            "requiresRecentLogin": "Dieser Vorgang ist sensibel und erfordert eine kürzliche Anmeldung. Melden Sie sich erneut an, bevor Sie diesen Vorgang erneut versuchen.",
+            "unauthorizedDomain": "Diese Domain ist nicht berechtigt, diesen Vorgang auszuführen. Fügen Sie sie zur Liste der autorisierten Domains in der Firebase-Konsole hinzu.",
+            "userNotFound": "Die Email-Adresse ist nicht registriert.",
+            "weakPassword": "Das Passwort ist nicht stark genug. Bitte verwenden Sie mindestens 6 Zeichen.",
+            "wrongPassword": "Das Passwort ist nicht korrekt."
+          }
+        }
+      }
+    }
+  },
+  "domain": {
+    "home": {
+      "page": {
+        "home": {
+          "card": {
+            "notice": {
+              "title": "Demo",
+              "message": "Dies ist lediglich eine Demo. Dein Account und deine Daten werden daher in regelmäßigen Abständen gelöscht."
+            }
+          },
+          "title": "Startseite"
+        }
+      }
+    },
+    "forgotPassword": {
+      "dialog": {
+        "email": {
+          "button": {
+            "ok": "Okay"
+          },
+          "header": "E-Mail gesendet",
+          "message": "Bitte überprüfe deine E-Mails für Anweisungen zum Zurücksetzen deines Passwortes."
+        }
+      },
+      "page": {
+        "forgotPassword": {
+          "button": {
+            "reset": "Passwort zurücksetzen"
+          },
+          "label": {
+            "email": "E-Mail"
+          },
+          "title": "Passwort vergessen"
+        }
+      }
+    },
+    "login": {
+      "page": {
+        "login": {
+          "button": {
+            "apple": "Apple",
+            "google": "Google",
+            "login": "Anmelden",
+            "register": "Registrieren",
+            "skip": "Überspringen",
+            "forgot": "Passwort vergessen?"
+          },
+          "label": {
+            "conditions": {
+              "and": "und",
+              "end": "gelesen und stimmen diesen zu.",
+              "privacy": "Datenschutzrichtlinien",
+              "start": "Indem Sie fortfahren, haben Sie unsere",
+              "terms": "Nutzungsbedingungen"
+            },
+            "email": "E-Mail",
+            "password": "Passwort",
+            "separator": "Oder melde dich an mit"
+          },
+          "title": "Anmeldung"
+        }
+      }
+    },
+    "register": {
+      "page": {
+        "register": {
+          "button": {
+            "register": "Registrieren"
+          },
+          "label": {
+            "conditions": {
+              "and": "und",
+              "end": "gelesen und stimmen diesen zu.",
+              "privacy": "Datenschutzrichtlinien",
+              "start": "Indem Sie fortfahren, haben Sie unsere",
+              "terms": "Nutzungsbedingungen"
+            },
+            "email": "E-Mail",
+            "password": "Passwort"
+          },
+          "title": "Registrierung"
+        }
+      }
+    },
+    "profile": {
+      "page": {
+        "profile": {
+          "button": {
+            "delete": "Löschen",
+            "link": "Verbinden",
+            "save": "Speichern",
+            "unlink": "Trennen",
+            "verify": "Verifizieren"
+          },
+          "label": {
+            "apple": "Apple-ID",
+            "displayName": "Name",
+            "email": "E-Mail",
+            "google": "Google-Account",
+            "password": "Passwort"
+          },
+          "title": "Profil"
+        }
+      },
+      "dialog": {
+        "delete": {
+          "button": {
+            "cancel": "Abbrechen",
+            "delete": "Löschen"
+          },
+          "message": "Bist du sicher, dass du dein Profil löschen möchtest?",
+          "header": "Löschen"
+        },
+        "emailVerificationSent": {
+          "button": {
+            "ok": "Okay"
+          },
+          "header": "E-Mail gesendet",
+          "message": "Bitte überprüfe deine E-Mails für Anweisungen zur Verifizierung deiner E-Mail-Adresse."
+        }
+      }
+    },
+    "settings": {
+      "page": {
+        "settings": {
+          "button": {
+            "feedback": "Feedback",
+            "language": "Sprache",
+            "licenses": "Lizenzen",
+            "logout": "Abmelden",
+            "mode": "Modus",
+            "notifications": "Push-Benachrichtigungen aktivieren",
+            "privacy": "Datenschutzbestimmungen",
+            "profile": "Profil",
+            "terms": "Nutzungsbedingungen",
+            "theme": "Design",
+            "updateAvailable": "Update verfügbar"
+          },
+          "label": {
+            "version": "Version"
+          },
+          "title": "Einstellungen"
+        }
+      },
+      "dialog": {
+        "feedback": {
+          "body1": "Falls du ein Problem meldest, lösche diese Zeilen bitte nicht. Sie helfen uns, herauszufinden, wo das Problem liegen könnte.",
+          "body2": "Deine Nachricht:",
+          "subject": "Feedback"
+        },
+        "language": {
+          "button": {
+            "en": "Englisch",
+            "de": "Deutsch"
+          },
+          "header": "Sprache"
+        },
+        "logout": {
+          "button": {
+            "cancel": "Abbrechen",
+            "logout": "Abmelden"
+          },
+          "message": "Bist du sicher, dass du dich abmelden möchtest?",
+          "header": "Abmelden"
+        },
+        "mode": {
+          "button": {
+            "android": "Android",
+            "ios": "iOS",
+            "system": "System"
+          },
+          "header": "Modus"
+        },
+        "reload": {
+          "button": {
+            "reload": "Neu laden"
+          },
+          "message": "Die App muss neu geladen werden."
+        },
+        "theme": {
+          "button": {
+            "dark": "Dunkel",
+            "light": "Hell",
+            "system": "System"
+          },
+          "header": "Design"
+        },
+        "updateAvailable": {
+          "button": {
+            "cancel": "Abbrechen",
+            "restart": "Neustarten"
+          },
+          "message": "Ein Update ist verfügbar. Bitte starte die App neu, um das Update zu installieren.",
+          "header": "Update verfügbar"
+        },
+        "updateNotAvailable": {
+          "message": "Die App ist auf dem neuesten Stand."
+        },
+        "version": {
+          "button": {
+            "update": "Nach Update suchen"
+          },
+          "header": "Version"
+        }
+      }
+    },
+    "tabs": {
+      "page": {
+        "tabs": {
+          "button": {
+            "home": "Startseite",
+            "settings": "Einstellungen",
+            "tasks": "Aufgaben"
+          }
+        }
+      }
+    },
+    "tasks": {
+      "page": {
+        "taskList": {
+          "button": {
+            "delete": "Löschen"
+          },
+          "title": "Aufgaben"
+        },
+        "taskUpsert": {
+          "button": {
+            "delete": "Löschen",
+            "file": {
+              "upload": "Neue Datei hochladen",
+              "delete": "Löschen"
+            },
+            "save": "Speichern"
+          },
+          "label": {
+            "description": "Beschreibung",
+            "dueDate": "Fälligkeitsdatum",
+            "title": "Titel"
+          },
+          "title": {
+            "create": "Aufgabe erstellen",
+            "edit": "Aufgabe bearbeiten"
+          }
+        }
+      },
+      "dialog": {
+        "pickFile": {
+          "button": {
+            "photo": "Foto",
+            "video": "Video",
+            "file": "Datei",
+            "cancel": "Abbrechen"
+          }
+        }
+      },
+      "message": {
+        "error": {
+          "notFound": "Diese Aufgabe existiert nicht."
+        }
+      }
+    }
+  }
+}

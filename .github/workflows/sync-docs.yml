@@ -1,0 +1,37 @@
+name: Sync Docs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: 20
+
+jobs:
+  sync-docs:
+    if: github.repository == 'ionstarter/angular-firebase-starter'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Create `dependencies.txt` file
+        run: npm list --depth=0 > dependencies.txt
+      - name: Sync `dependencies.txt`
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAT }}
+        with:
+          source_file: "dependencies.txt"
+          destination_repo: "ionstarter/docs"
+          destination_folder: "docs/assets/files/angular-firebase"
+          user_email: "41898282+github-actions[bot]@users.noreply.github.com"
+          user_name: "github-actions[bot]"
+          commit_message: "docs(angular-firebase): update `dependencies.txt`"

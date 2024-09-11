@@ -1,0 +1,74 @@
+ion-input {
+  margin: 0 0 12px 0;
+}
+
+ion-button.google {
+  --background: white;
+  --color: black;
+  --border-width: 2px;
+  --border-style: solid;
+  --border-color: var(--ion-color-light);
+}
+
+ion-button.apple {
+  --background: black;
+  --color: white;
+
+  img {
+    filter: invert(100%);
+  }
+}
+
+:host-context(.ios body.ion-palette-dark) {
+  ion-button.apple {
+    --background: white;
+    --color: black;
+
+    img {
+      filter: invert(0%);
+    }
+  }
+
+  ion-button.google {
+    --border-color: white;
+  }
+}
+
+ion-button > img {
+  height: 18px;
+  margin-right: 14px;
+}
+
+div.forgot-password-wrapper {
+  width: 100%;
+  text-align: right;
+
+  ion-button {
+    font-size: 12px;
+  }
+}
+
+.separator-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 0;
+
+  div.separator {
+    width: 100%;
+    height: 1px;
+    background: var(--ion-color-light);
+  }
+
+  div.separator-text {
+    margin: 0 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}
+
+.conditions-text {
+  margin: 24px 0px;
+  font-size: 12px;
+  text-align: center;
+}

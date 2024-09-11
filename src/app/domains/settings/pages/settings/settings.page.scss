@@ -1,0 +1,11 @@
+:host-context(body:not(.ion-palette-dark)) {
+  ion-content {
+    --background: var(--ion-color-light);
+  }
+}
+
+:host-context(.ios body:not(.ion-palette-dark)) {
+  ion-toolbar {
+    --background: var(--ion-color-light);
+  }
+}

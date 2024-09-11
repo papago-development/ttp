@@ -1,0 +1,138 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*.*.*
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: 20
+  IONIC_TOKEN: ${{ secrets.IONIC_TOKEN }}
+
+jobs:
+  build-web:
+    name: Build web assets
+    runs-on: ubuntu-latest
+    if: ${{ vars.ENABLE_JOB_BUILD_WEB == 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Build web assets
+        run: npm run build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: www
+          path: www
+  build-android:
+    name: Build Android platform
+    runs-on: ubuntu-latest
+    needs: [build-web]
+    if: ${{ vars.ENABLE_JOB_BUILD_ANDROID == 'true' }}
+    outputs:
+      ANDROID_BUILD_ID: ${{ steps.build-android.outputs.ANDROID_BUILD_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Ionic Cloud CLI
+        run: curl -fsSL https://ionic.io/get-ionic-cloud-cli | bash
+      - name: Build Android on Appflow
+        id: build-android
+        run: |
+          ionic-cloud build android ${{ vars.APPFLOW_ANDROID_BUILD_TYPE }} --app-id ${{ vars.APPFLOW_APP_ID }} --commit ${{ github.sha }} --json > android-build.json
+          echo "ANDROID_BUILD_ID=$(jq -r '.buildId' android-build.json)" >> $GITHUB_OUTPUT
+  build-ios:
+    name: Build iOS platform
+    runs-on: ubuntu-latest
+    needs: [build-web]
+    if: ${{ vars.ENABLE_JOB_BUILD_IOS == 'true' }}
+    outputs:
+      IOS_BUILD_ID: ${{ steps.build-ios.outputs.IOS_BUILD_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Ionic Cloud CLI
+        run: curl -fsSL https://ionic.io/get-ionic-cloud-cli | bash
+      - name: Build iOS on Appflow
+        id: build-ios
+        run: |
+          ionic-cloud build ios ${{ vars.APPFLOW_IOS_BUILD_TYPE }} --app-id ${{ vars.APPFLOW_APP_ID }} --commit ${{ github.sha }} --json > ios-build.json
+          echo "IOS_BUILD_ID=$(jq -r '.buildId' ios-build.json)" >> $GITHUB_OUTPUT
+  deploy-android:
+    name: Deploy Android platform
+    runs-on: ubuntu-latest
+    needs: [build-android]
+    if: ${{ vars.ENABLE_JOB_DEPLOY_ANDROID == 'true' }}
+    env:
+      ANDROID_BUILD_ID: ${{ needs.build-android.outputs.ANDROID_BUILD_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Ionic Cloud CLI
+        run: curl -fsSL https://ionic.io/get-ionic-cloud-cli | bash
+      - name: Deploy Android to the Google Play Store
+        run: ionic-cloud deploy android --app-id ${{ vars.APPFLOW_APP_ID }} --build-id ${{ env.ANDROID_BUILD_ID }} --destination ${{ vars.APPFLOW_ANDROID_DEPLOY_DESTINATION }}
+  deploy-ios:
+    name: Deploy iOS platform
+    runs-on: ubuntu-latest
+    needs: [build-ios]
+    if: ${{ vars.ENABLE_JOB_DEPLOY_IOS == 'true' }}
+    env:
+      IOS_BUILD_ID: ${{ needs.build-ios.outputs.IOS_BUILD_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Ionic Cloud CLI
+        run: curl -fsSL https://ionic.io/get-ionic-cloud-cli | bash
+      - name: Deploy iOS to the Apple App Store
+        run: ionic-cloud deploy ios --app-id ${{ vars.APPFLOW_APP_ID }} --build-id ${{ env.IOS_BUILD_ID }} --destination ${{ vars.APPFLOW_IOS_DEPLOY_DESTINATION }}
+  deploy-web:
+    name: Deploy to Firebase
+    runs-on: ubuntu-latest
+    needs: [build-web]
+    if: ${{ vars.ENABLE_JOB_DEPLOY_WEB == 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: www
+          path: www
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: "live"
+      - name: Deploy Cloud Firestore Rules
+        uses: w9jds/firebase-action@v12.9.0
+        with:
+          args: deploy --only firestore:rules
+        env:
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - name: Deploy Cloud Firestore Indexes
+        uses: w9jds/firebase-action@v12.9.0
+        with:
+          args: deploy --only firestore:indexes
+        env:
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - name: Deploy Cloud Storage Rules
+        uses: w9jds/firebase-action@v12.9.0
+        with:
+          args: deploy --only storage
+        env:
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - name: Deploy Remote Config
+        uses: w9jds/firebase-action@v12.9.0
+        with:
+          args: deploy --only remoteconfig
+        env:
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}

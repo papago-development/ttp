@@ -1,0 +1,38 @@
+name: Live Update
+
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: "Channel name"
+        default: ""
+      rollout:
+        description: "Rollout percentage (0 - 1)"
+        default: "1"
+
+env:
+  NODE_VERSION: 20
+
+jobs:
+  lint:
+    name: Deploy live update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Build web assets
+        run: npm run build
+      - name: Login to Capawesome Cloud
+        run: npx capawesome login --token ${{ secrets.CAPAWESOME_TOKEN }}
+      - name: Create the channel
+        if: ${{ inputs.channel != '' }}
+        continue-on-error: true
+        run: npx capawesome apps:channels:create --appId ${{ secrets.CAPAWESOME_APP_ID }} --name ${{ inputs.channel }}
+      - name: Create the bundle
+        run: npx capawesome apps:bundles:create --appId ${{ secrets.CAPAWESOME_APP_ID }} --path www --channel ${{ inputs.channel }} --rollout ${{ inputs.rollout }}

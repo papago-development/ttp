@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1070868075505",
+    "project_id": "ionstarter-9e55d",
+    "storage_bucket": "ionstarter-9e55d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070868075505:android:f8ad6cc500ccaf24f5aa50",
+        "android_client_info": {
+          "package_name": "dev.ionstarter.angularfirebase.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070868075505-vbe71uvl9qhfkvc1shjsfnoi9muek3tu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.ionstarter.angularfirebase.demo",
+            "certificate_hash": "99e0cf42dd4a715410ef903e41cfbbb0e1d7464f"
+          }
+        },
+        {
+          "client_id": "1070868075505-rvquv5k723fj2n4u9a397nj0nqrmv7cc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxJumeqETxf8YK3JhrsdckdfOFezt56nE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070868075505-rvquv5k723fj2n4u9a397nj0nqrmv7cc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1070868075505-i090c5h7ku6mvt0vbfhrpkepsl11spj6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "dev.ionstarter.angularfirebase.demo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

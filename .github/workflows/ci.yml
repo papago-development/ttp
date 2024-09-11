@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: 20
+  JAVA_VERSION: 17
+  IONIC_TOKEN: ${{ secrets.IONIC_TOKEN }}
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    if: ${{ vars.ENABLE_JOB_LINT == 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Run ESLint and Prettier
+        run: npm run lint
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    if: ${{ vars.ENABLE_JOB_TEST == 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Run unit tests
+        run: npm run test:ci
+  build-web:
+    name: Build web assets
+    runs-on: ubuntu-latest
+    if: ${{ vars.ENABLE_JOB_BUILD_WEB == 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Build web assets
+        run: npm run build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: www
+          path: www
+  build-android:
+    name: Build Android platform
+    runs-on: ubuntu-latest
+    needs: [build-web, lint, test]
+    if: ${{ vars.ENABLE_JOB_BUILD_ANDROID == 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Ionic Cloud CLI
+        run: curl -fsSL https://ionic.io/get-ionic-cloud-cli | bash
+      - name: Build Android on Appflow
+        run: ionic-cloud build android ${{ vars.APPFLOW_ANDROID_BUILD_TYPE }} --app-id ${{ vars.APPFLOW_APP_ID }} --commit ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.sha }}
+  build-ios:
+    name: Build iOS platform
+    runs-on: ubuntu-latest
+    needs: [build-web, lint, test]
+    if: ${{ vars.ENABLE_JOB_BUILD_IOS == 'true' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Ionic Cloud CLI
+        run: curl -fsSL https://ionic.io/get-ionic-cloud-cli | bash
+      - name: Build iOS on Appflow
+        run: ionic-cloud build ios ${{ vars.APPFLOW_IOS_BUILD_TYPE }} --app-id ${{ vars.APPFLOW_APP_ID }} --commit ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.sha }}

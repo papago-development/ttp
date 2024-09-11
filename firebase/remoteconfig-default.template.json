@@ -1,0 +1,46 @@
+{
+  "parameters": {
+    "enable_anonymous_sign_in": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "valueType": "BOOLEAN"
+    },
+    "enable_apple_sign_in": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "valueType": "BOOLEAN"
+    },
+    "enable_google_sign_in": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "valueType": "BOOLEAN"
+    },
+    "feedback_email_address": {
+      "defaultValue": {
+        "value": ""
+      },
+      "valueType": "STRING"
+    },
+    "privacy_policy_url": {
+      "defaultValue": {
+        "value": ""
+      },
+      "valueType": "STRING"
+    },
+    "terms_of_service_url": {
+      "defaultValue": {
+        "value": ""
+      },
+      "valueType": "STRING"
+    },
+    "max_file_size": {
+      "defaultValue": {
+        "value": "5242880"
+      },
+      "valueType": "NUMBER"
+    }
+  }
+}

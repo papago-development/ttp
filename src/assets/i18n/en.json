@@ -1,0 +1,313 @@
+{
+  "core": {
+    "button": {
+      "back": "Back"
+    },
+    "dialog": {
+      "error": {
+        "button": {
+          "ok": "OK"
+        },
+        "header": "Error"
+      },
+      "filePicker": {
+        "button": {
+          "cancel": "Cancel"
+        },
+        "label": {
+          "image": "Photo",
+          "video": "Video",
+          "file": "File"
+        }
+      },
+      "loading": {
+        "message": "Loading..."
+      },
+      "toast": {
+        "button": {
+          "ok": "OK"
+        }
+      },
+      "unsavedChanges": {
+        "button": {
+          "cancel": "Cancel",
+          "continue": "Continue"
+        },
+        "message": "You have unsaved changes. Are you sure you want to leave the page?",
+        "header": "Unsaved Changes"
+      }
+    },
+    "message": {
+      "error": {
+        "filePicker": {
+          "maxFileSizeExceeded": "The maximum file size of {{ maxFileSizeInMb }} MB has been exceeded."
+        },
+        "firebase": {
+          "auth": {
+            "emailAlreadyInUse": "The email address is already in use.",
+            "invalidCredential": "The credential is invalid or has expired.",
+            "invalidEmail": "The email address is invalid.",
+            "popupClosedByUser": "The operation was canceled.",
+            "requiresRecentLogin": "This operation is sensitive and requires recent authentication. Log in again before retrying this request.",
+            "unauthorizedDomain": "This domain is not authorized to run this operation. Add it to the authorized domains list in the Firebase console.",
+            "userNotFound": "The email address is not registered.",
+            "weakPassword": "The password is not strong enough. Please use at least 6 characters.",
+            "wrongPassword": "The password is not correct."
+          }
+        }
+      }
+    }
+  },
+  "domain": {
+    "home": {
+      "page": {
+        "home": {
+          "card": {
+            "notice": {
+              "title": "Demo",
+              "message": "This is just a demo. Your account and your data will therefore be deleted from time to time."
+            }
+          },
+          "title": "Home"
+        }
+      }
+    },
+    "forgotPassword": {
+      "dialog": {
+        "email": {
+          "button": {
+            "ok": "OK"
+          },
+          "header": "Email Sent",
+          "message": "Please check your email for instructions on how to reset your password."
+        }
+      },
+      "page": {
+        "forgotPassword": {
+          "button": {
+            "reset": "Reset Password"
+          },
+          "label": {
+            "email": "Email"
+          },
+          "title": "Forgot Password"
+        }
+      }
+    },
+    "login": {
+      "page": {
+        "login": {
+          "button": {
+            "apple": "Apple",
+            "google": "Google",
+            "login": "Sign In",
+            "register": "Register",
+            "skip": "Skip",
+            "forgot": "Forgot password?"
+          },
+          "label": {
+            "conditions": {
+              "and": "and",
+              "end": ".",
+              "privacy": "Privacy Policy",
+              "start": "By continuing, you have read and agree to our",
+              "terms": "Terms of Service"
+            },
+            "email": "Email",
+            "password": "Password",
+            "separator": "Or sign in with"
+          },
+          "title": "Login"
+        }
+      }
+    },
+    "register": {
+      "page": {
+        "register": {
+          "button": {
+            "register": "Register"
+          },
+          "label": {
+            "conditions": {
+              "and": "and",
+              "end": ".",
+              "privacy": "Privacy Policy",
+              "start": "By continuing, you have read and agree to our",
+              "terms": "Terms of Service"
+            },
+            "email": "Email",
+            "password": "Password"
+          },
+          "title": "Register"
+        }
+      }
+    },
+    "profile": {
+      "page": {
+        "profile": {
+          "button": {
+            "delete": "Delete",
+            "link": "Connect",
+            "save": "Save",
+            "unlink": "Unlink",
+            "verify": "Verify"
+          },
+          "label": {
+            "apple": "Apple ID",
+            "displayName": "Name",
+            "email": "Email",
+            "google": "Google Account",
+            "password": "Password"
+          },
+          "title": "Profile"
+        }
+      },
+      "dialog": {
+        "delete": {
+          "button": {
+            "cancel": "Cancel",
+            "delete": "Delete"
+          },
+          "message": "Are you sure you want to delete your profile?",
+          "header": "Delete"
+        },
+        "emailVerificationSent": {
+          "button": {
+            "ok": "OK"
+          },
+          "header": "Email Verification Sent",
+          "message": "Please check your email for instructions on how to verify your email address."
+        }
+      }
+    },
+    "settings": {
+      "page": {
+        "settings": {
+          "button": {
+            "feedback": "Feedback",
+            "language": "Language",
+            "licenses": "Licenses",
+            "logout": "Sign Out",
+            "mode": "Mode",
+            "notifications": "Enable Push Notifications",
+            "privacy": "Privacy Policy",
+            "profile": "Profile",
+            "terms": "Terms of Service",
+            "theme": "Theme",
+            "updateAvailable": "Update available"
+          },
+          "label": {
+            "version": "Version"
+          },
+          "title": "Settings"
+        }
+      },
+      "dialog": {
+        "feedback": {
+          "body1": "If you report a problem, please do not delete these lines. They will help us to find out where the problem might lie.",
+          "body2": "Your message:",
+          "subject": "Feedback"
+        },
+        "language": {
+          "button": {
+            "en": "English",
+            "de": "German"
+          },
+          "header": "Language"
+        },
+        "logout": {
+          "button": {
+            "cancel": "Cancel",
+            "logout": "Sign out"
+          },
+          "message": "Are you sure you want to sign out?",
+          "header": "Sign out"
+        },
+        "mode": {
+          "button": {
+            "android": "Android",
+            "ios": "iOS",
+            "system": "System"
+          },
+          "header": "Mode"
+        },
+        "reload": {
+          "button": {
+            "reload": "Reload"
+          },
+          "message": "The app needs to be reloaded."
+        },
+        "theme": {
+          "button": {
+            "dark": "Dark",
+            "light": "Light",
+            "system": "System"
+          },
+          "header": "Theme"
+        },
+        "updateAvailable": {
+          "button": {
+            "cancel": "Cancel",
+            "restart": "Restart"
+          },
+          "message": "A new update is available. Please restart the app to apply the update.",
+          "header": "Update available"
+        },
+        "updateNotAvailable": {
+          "message": "No update available."
+        },
+        "version": {
+          "button": {
+            "update": "Check for update"
+          },
+          "header": "Version"
+        }
+      }
+    },
+    "tabs": {
+      "page": {
+        "tabs": {
+          "button": {
+            "home": "Home",
+            "settings": "Settings",
+            "tasks": "Tasks"
+          }
+        }
+      }
+    },
+    "tasks": {
+      "page": {
+        "taskList": {
+          "button": {
+            "delete": "Delete"
+          },
+          "title": "Tasks"
+        },
+        "taskUpsert": {
+          "button": {
+            "delete": "Delete",
+            "file": {
+              "upload": "Upload new file",
+              "delete": "Delete"
+            },
+            "save": "Save"
+          },
+          "label": {
+            "description": "Description",
+            "dueDate": "Due Date",
+            "title": "Title"
+          },
+          "title": {
+            "create": "Create Task",
+            "edit": "Edit Task"
+          }
+        }
+      },
+      "message": {
+        "error": {
+          "notFound": "This task does not exist."
+        }
+      }
+    }
+  }
+}

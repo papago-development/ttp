@@ -1,0 +1,4 @@
+contact_links:
+  - name: ❓ Question
+    url: https://github.com/ionstarter/angular-firebase-starter/discussions
+    about: This issue tracker is not for questions. Please post your question on GitHub Discussions.

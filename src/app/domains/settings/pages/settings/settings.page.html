@@ -1,0 +1,150 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{
+      "domain.settings.page.settings.title" | transloco
+    }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{
+        "domain.settings.page.settings.title" | transloco
+      }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  @if (isUpdateAvailable$ | async) {
+    <ion-list [inset]="true">
+      <ion-item button detail="true" (click)="onPresentUpdateAvailableAlert()">
+        <ion-icon name="arrow-up-circle-outline" slot="start"></ion-icon>
+        <ion-label>{{
+          "domain.settings.page.settings.button.updateAvailable" | transloco
+        }}</ion-label>
+      </ion-item>
+    </ion-list>
+  }
+  <ng-container
+    *appLet="
+      notificationPermissionStatus$ | async as notificationPermissionStatus
+    "
+  >
+    @if (
+      (isNotificationSupported$ | async) &&
+      !(notificationPermissionStatus.receive | isPermissionState: "granted")
+    ) {
+      <ion-list [inset]="true">
+        <ion-item
+          button
+          detail="true"
+          (click)="onRequestNotificationPermissions()"
+        >
+          <ion-icon name="notifications" slot="start"></ion-icon>
+          <ion-label>{{
+            "domain.settings.page.settings.button.notifications" | transloco
+          }}</ion-label>
+        </ion-item>
+      </ion-list>
+    }
+  </ng-container>
+  <ion-list [inset]="true">
+    <ion-item button detail="true" (click)="onNavigateToProfilePage()">
+      <ion-icon name="person" slot="start"></ion-icon>
+      <ion-label>{{
+        "domain.settings.page.settings.button.profile" | transloco
+      }}</ion-label>
+    </ion-item>
+    <ion-item button detail="true" (click)="onSignOut()">
+      <ion-icon name="log-out" slot="start"></ion-icon>
+      <ion-label>{{
+        "domain.settings.page.settings.button.logout" | transloco
+      }}</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list [inset]="true">
+    <ion-item button detail="false" (click)="onPresentLanguageActionSheet()">
+      <ion-icon name="language" slot="start"></ion-icon>
+      <ion-label>{{
+        "domain.settings.page.settings.button.language" | transloco
+      }}</ion-label>
+      <ion-label slot="end">{{
+        language$ | async | languageName | async
+      }}</ion-label>
+    </ion-item>
+    <ion-item button detail="false" (click)="onPresentModeActionSheet()">
+      <ion-icon name="phone-portrait" slot="start"></ion-icon>
+      <ion-label>{{
+        "domain.settings.page.settings.button.mode" | transloco
+      }}</ion-label>
+      <ion-label slot="end">{{ mode$ | async | modeName | async }}</ion-label>
+    </ion-item>
+    <ion-item button detail="false" (click)="onPresentThemeActionSheet()">
+      <ion-icon name="sunny" slot="start"></ion-icon>
+      <ion-label>{{
+        "domain.settings.page.settings.button.theme" | transloco
+      }}</ion-label>
+      <ion-label slot="end">{{ theme$ | async | themeName | async }}</ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list [inset]="true">
+    @if (
+      "privacy_policy_url" | configurationValueString | async;
+      as privacyPolicyUrl
+    ) {
+      <ion-item button detail="true" [appOpenUrl]="privacyPolicyUrl">
+        <ion-icon name="document-text" slot="start"></ion-icon>
+        <ion-label>{{
+          "domain.settings.page.settings.button.privacy" | transloco
+        }}</ion-label>
+      </ion-item>
+    }
+    @if (
+      "terms_of_service_url" | configurationValueString | async;
+      as termsOfServiceUrl
+    ) {
+      <ion-item button detail="true" [appOpenUrl]="termsOfServiceUrl">
+        <ion-icon name="document-text" slot="start"></ion-icon>
+        <ion-label>{{
+          "domain.settings.page.settings.button.terms" | transloco
+        }}</ion-label>
+      </ion-item>
+    }
+    <ion-item button detail="true" [appOpenUrl]="licensesUrl">
+      <ion-icon name="document-text" slot="start"></ion-icon>
+      <ion-label>{{
+        "domain.settings.page.settings.button.licenses" | transloco
+      }}</ion-label>
+    </ion-item>
+  </ion-list>
+  @if (
+    "feedback_email_address" | configurationValueString | async;
+    as feedbackEmailAddress
+  ) {
+    <ion-list [inset]="true">
+      <ion-item
+        button
+        [detail]="true"
+        [lines]="'none'"
+        (click)="onSubmitFeedback(feedbackEmailAddress)"
+      >
+        <ion-icon name="chatbox" slot="start"></ion-icon>
+        <ion-label>{{
+          "domain.settings.page.settings.button.feedback" | transloco
+        }}</ion-label>
+      </ion-item>
+    </ion-list>
+  }
+  <ion-list [inset]="true">
+    <ion-item
+      [button]="isNative$ | async"
+      [detail]="isNative$ | async"
+      (click)="onPresentVersionActionSheet()"
+    >
+      <ion-icon name="information-circle" slot="start"></ion-icon>
+      <ion-label
+        >{{ "domain.settings.page.settings.label.version" | transloco }}
+        {{ version }} ({{ changeset }})
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,22 @@
+<ion-tabs>
+  <ion-tab-bar id="tabbar" slot="bottom">
+    <ion-tab-button tab="home" (click)="onNavigateToHomePage()">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{
+        "domain.tabs.page.tabs.button.home" | transloco
+      }}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="tasks" (click)="onNavigateToTasksPage()">
+      <ion-icon name="file-tray-full"></ion-icon>
+      <ion-label>{{
+        "domain.tabs.page.tabs.button.tasks" | transloco
+      }}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="settings" (click)="onNavigateToSettingsPage()">
+      <ion-icon name="cog"></ion-icon>
+      <ion-label>{{
+        "domain.tabs.page.tabs.button.settings" | transloco
+      }}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

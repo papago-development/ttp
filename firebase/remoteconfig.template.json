@@ -1,0 +1,46 @@
+{
+  "parameters": {
+    "enable_anonymous_sign_in": {
+      "defaultValue": {
+        "value": "true"
+      },
+      "valueType": "BOOLEAN"
+    },
+    "enable_apple_sign_in": {
+      "defaultValue": {
+        "value": "true"
+      },
+      "valueType": "BOOLEAN"
+    },
+    "enable_google_sign_in": {
+      "defaultValue": {
+        "value": "true"
+      },
+      "valueType": "BOOLEAN"
+    },
+    "feedback_email_address": {
+      "defaultValue": {
+        "value": "robin@ionstarter.dev"
+      },
+      "valueType": "STRING"
+    },
+    "privacy_policy_url": {
+      "defaultValue": {
+        "value": "https://ionstarter.dev/legal/privacy"
+      },
+      "valueType": "STRING"
+    },
+    "terms_of_service_url": {
+      "defaultValue": {
+        "value": "https://ionstarter.dev/legal/terms"
+      },
+      "valueType": "STRING"
+    },
+    "max_file_size": {
+      "defaultValue": {
+        "value": "5242880"
+      },
+      "valueType": "NUMBER"
+    }
+  }
+}

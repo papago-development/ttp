@@ -1,0 +1,39 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    tags:
+      - v*.*.*
+  # pull_request:
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: 20
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_ENVIRONMENT: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
+  VERCEL_BUILD_ARGS: ${{ github.event_name == 'pull_request' && '' || '--prod' }}
+  VERCEL_DEPLOY_ARGS: ${{ github.event_name == 'pull_request' && '' || '--prod' }}
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    if: github.repository == 'ionstarter/angular-firebase-starter'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install Vercel CLI
+        run: npm i -g vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=${{ env.VERCEL_ENVIRONMENT }} --token=${{ env.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ env.VERCEL_TOKEN }} ${{ env.VERCEL_BUILD_ARGS }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }} ${{ env.VERCEL_DEPLOY_ARGS }}

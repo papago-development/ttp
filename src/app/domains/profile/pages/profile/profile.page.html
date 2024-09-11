@@ -1,0 +1,122 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/settings"
+        [text]="'core.button.back' | transloco"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ "domain.profile.page.profile.title" | transloco }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        [disabled]="!form.valid || !form.dirty"
+        (click)="onUpdateProfile()"
+        >{{ "domain.profile.page.profile.button.save" | transloco }}</ion-button
+      >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{
+        "domain.profile.page.profile.title" | transloco
+      }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <form [formGroup]="form" (ngSubmit)="onUpdateProfile()">
+    <ion-list [inset]="true">
+      <ion-item>
+        <ion-input
+          formControlName="displayName"
+          [label]="'domain.profile.page.profile.label.displayName' | transloco"
+          label-placement="stacked"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="email"
+          [label]="'domain.profile.page.profile.label.email' | transloco"
+          label-placement="stacked"
+        ></ion-input>
+        @if (
+          (currentUser$ | async)?.email &&
+          !(currentUser$ | async)?.emailVerified
+        ) {
+          <ion-button
+            slot="end"
+            fill="clear"
+            (click)="onSendEmailVerification()"
+          >
+            {{ "domain.profile.page.profile.button.verify" | transloco }}
+          </ion-button>
+        }
+      </ion-item>
+      <ion-item>
+        <ion-input
+          formControlName="password"
+          [label]="'domain.profile.page.profile.label.password' | transloco"
+          label-placement="stacked"
+          type="password"
+          [minlength]="6"
+          [placeholder]="
+            (currentUser$ | async | isUserLinkedWith: 'password')
+              ? '••••••••'
+              : ''
+          "
+        ></ion-input>
+      </ion-item>
+      @if ("enable_apple_sign_in" | configurationValueBoolean | async) {
+        <ion-item>
+          <ion-input
+            formControlName="appleEmail"
+            [label]="'domain.profile.page.profile.label.apple' | transloco"
+            label-placement="stacked"
+            [readonly]="true"
+          ></ion-input>
+          @if (!(currentUser$ | async | isUserLinkedWith: "apple.com")) {
+            <ion-button slot="end" fill="clear" (click)="onLinkWithApple()">
+              {{ "domain.profile.page.profile.button.link" | transloco }}
+            </ion-button>
+          }
+          @if (currentUser$ | async | isUserLinkedWith: "apple.com") {
+            <ion-button slot="end" fill="clear" (click)="onUnlinkFromApple()">
+              {{ "domain.profile.page.profile.button.unlink" | transloco }}
+            </ion-button>
+          }
+        </ion-item>
+      }
+      @if ("enable_google_sign_in" | configurationValueBoolean | async) {
+        <ion-item>
+          <ion-input
+            formControlName="googleEmail"
+            [label]="'domain.profile.page.profile.label.google' | transloco"
+            label-placement="stacked"
+            [readonly]="true"
+          ></ion-input>
+          @if (!(currentUser$ | async | isUserLinkedWith: "google.com")) {
+            <ion-button slot="end" fill="clear" (click)="onLinkWithGoogle()">
+              {{ "domain.profile.page.profile.button.link" | transloco }}
+            </ion-button>
+          }
+          @if (currentUser$ | async | isUserLinkedWith: "google.com") {
+            <ion-button slot="end" fill="clear" (click)="onUnlinkFromGoogle()">
+              {{ "domain.profile.page.profile.button.unlink" | transloco }}
+            </ion-button>
+          }
+        </ion-item>
+      }
+    </ion-list>
+    <div class="ion-padding-horizontal">
+      <ion-button
+        expand="block"
+        fill="clear"
+        color="danger"
+        (click)="onDeleteProfile()"
+      >
+        {{ "domain.profile.page.profile.button.delete" | transloco }}
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

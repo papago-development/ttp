@@ -1,0 +1,7 @@
+{
+  "name": "angular-firebase-starter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
